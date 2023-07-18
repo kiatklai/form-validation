@@ -1,7 +1,10 @@
+import './FormComponent.css'
+
 const FormComponent =()=>{
   return (
     <div className="container">
       <form className="form">
+        <h2>Registration Form</h2>
         <div className="form-control">
           <label>Name</label>
           <input type="text"/>

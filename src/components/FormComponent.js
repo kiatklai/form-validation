@@ -40,7 +40,7 @@ const FormComponent =()=>{
       setErrorPassword('Password must more than 8 characters')
       setPasswordColor('red')
     }
-    if(repassword != "" && repassword === password){
+    if(repassword !== "" && repassword === password){
       setErrorRePassword('')
       setRepasswordColor('green')
     }else{

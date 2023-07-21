@@ -12,17 +12,24 @@ const FormComponent =()=>{
   const [errorPassword,setErrorPassword] = useState('Password must more than 8 characters')
   const [errorRePassword,setErrorRePassword] = useState('Comfirmation Password is not match password')
 
+  const [userNameColor,setUserNameColor] = useState('')
+  const [emailColor,setEmailColor] = useState('')
+
   const validateForm = (e) =>{
     e.preventDefault()
     if(userName.length>6){
       setErrorUserName('')
+      setUserNameColor('green')
     }else{
       setErrorUserName('Please insert more than 6 characters')
+      setUserNameColor('red')
     }
     if(email.includes("@")){
       setErrorEmail('')
+      setEmailColor('green')
     }else{
       setErrorEmail('Email is incorrect')
+      setEmailColor('red')
     }
   }
 
@@ -32,13 +39,13 @@ const FormComponent =()=>{
         <h2>Registration Form</h2>
         <div className="form-control">
           <label>Name</label>
-          <input type="text" value={userName} onChange={(e)=>setUserName(e.target.value)}/>
-          <small>{errorUserName}</small>
+          <input type="text" value={userName} onChange={(e)=>setUserName(e.target.value)} style={{borderColor:userNameColor}}/>
+          <small style={{color:userNameColor}}>{errorUserName}</small>
         </div>
         <div className="form-control">
           <label>Email</label>
-          <input type="text" value={email} onChange={(e)=>setEmail(e.target.value)}/>
-          <small>{errorEmail}</small>
+          <input type="text" value={email} onChange={(e)=>setEmail(e.target.value)} style={{borderColor:emailColor}}/>
+          <small style={{color:emailColor}}>{errorEmail}</small>
         </div>
         <div className="form-control">
           <label>Password</label>

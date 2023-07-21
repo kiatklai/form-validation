@@ -9,11 +9,13 @@ const FormComponent =()=>{
 
   const [errorUserName,setErrorUserName] = useState('')
   const [errorEmail,setErrorEmail] = useState('')
-  const [errorPassword,setErrorPassword] = useState('Password must more than 8 characters')
-  const [errorRePassword,setErrorRePassword] = useState('Comfirmation Password is not match password')
+  const [errorPassword,setErrorPassword] = useState('')
+  const [errorRePassword,setErrorRePassword] = useState('')
 
   const [userNameColor,setUserNameColor] = useState('')
   const [emailColor,setEmailColor] = useState('')
+  const [passwordColor,setPasswordColor] = useState('')
+  const [repasswordColor,setRepasswordColor] = useState('')
 
   const validateForm = (e) =>{
     e.preventDefault()
@@ -30,6 +32,20 @@ const FormComponent =()=>{
     }else{
       setErrorEmail('Email is incorrect')
       setEmailColor('red')
+    }
+    if(password.length>8){
+      setErrorPassword('')
+      setPasswordColor('green')
+    }else{
+      setErrorPassword('Password must more than 8 characters')
+      setPasswordColor('red')
+    }
+    if(repassword != "" && repassword === password){
+      setErrorRePassword('')
+      setRepasswordColor('green')
+    }else{
+      setErrorRePassword('Confirmation Password is not match password')
+      setRepasswordColor('red')
     }
   }
 
@@ -49,13 +65,13 @@ const FormComponent =()=>{
         </div>
         <div className="form-control">
           <label>Password</label>
-          <input type="password" value={password} onChange={(e)=>setPassword(e.target.value)}/>
-          <small>{errorPassword}</small>
+          <input type="password" value={password} onChange={(e)=>setPassword(e.target.value)} style={{borderColor:passwordColor}}/>
+          <small style={{color:passwordColor}}>{errorPassword}</small>
         </div>
         <div className="form-control">
           <label>Confirmation Password</label>
-          <input type="password" value={repassword} onChange={(e)=>setRepassword(e.target.value)}/>
-          <small>{errorRePassword}</small>
+          <input type="password" value={repassword} onChange={(e)=>setRepassword(e.target.value)} style={{borderColor:repasswordColor}}/>
+          <small style={{color:repasswordColor}}>{errorRePassword}</small>
         </div>
         <button type="submit">Registration</button>
       </form>

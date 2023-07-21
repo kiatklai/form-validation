@@ -7,14 +7,28 @@ const FormComponent =()=>{
   const [password,setPassword] = useState('')
   const [repassword,setRepassword] = useState('')
 
-  const [errorUserName,serErrorUserName] = useState('Please insert more than 8 characters')
-  const [errorEmail,setErrorEmail] = useState('Email is incorrect')
+  const [errorUserName,setErrorUserName] = useState('')
+  const [errorEmail,setErrorEmail] = useState('')
   const [errorPassword,setErrorPassword] = useState('Password must more than 8 characters')
   const [errorRePassword,setErrorRePassword] = useState('Comfirmation Password is not match password')
 
+  const validateForm = (e) =>{
+    e.preventDefault()
+    if(userName.length>6){
+      setErrorUserName('')
+    }else{
+      setErrorUserName('Please insert more than 6 characters')
+    }
+    if(email.includes("@")){
+      setErrorEmail('')
+    }else{
+      setErrorEmail('Email is incorrect')
+    }
+  }
+
   return (
     <div className="container">
-      <form className="form">
+      <form className="form" onSubmit={validateForm}>
         <h2>Registration Form</h2>
         <div className="form-control">
           <label>Name</label>
@@ -23,7 +37,7 @@ const FormComponent =()=>{
         </div>
         <div className="form-control">
           <label>Email</label>
-          <input type="email" value={email} onChange={(e)=>setEmail(e.target.value)}/>
+          <input type="text" value={email} onChange={(e)=>setEmail(e.target.value)}/>
           <small>{errorEmail}</small>
         </div>
         <div className="form-control">
